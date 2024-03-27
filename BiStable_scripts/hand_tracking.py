@@ -136,6 +136,7 @@ def main(args=None):
                 
 
                     # Publish the mapped value to ROS 2 topic
+                    sleep(interval)
                     node.publish_position(drive_command, steer_command)
 
                 else:
