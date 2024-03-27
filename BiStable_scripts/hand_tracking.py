@@ -91,7 +91,7 @@ def main(args=None):
     interval = 0.002
 
     kp_distance = 0.5
-    ki_distance = 0.1
+    ki_distance = 0.15
     kd_distance = 0.0
     integral_distance = 0
     prev_distance_error = 0
