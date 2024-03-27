@@ -1,0 +1,23 @@
+running egg_info
+writing build/BiStable_scripts/BiStable_scripts.egg-info/PKG-INFO
+writing dependency_links to build/BiStable_scripts/BiStable_scripts.egg-info/dependency_links.txt
+writing entry points to build/BiStable_scripts/BiStable_scripts.egg-info/entry_points.txt
+writing requirements to build/BiStable_scripts/BiStable_scripts.egg-info/requires.txt
+writing top-level names to build/BiStable_scripts/BiStable_scripts.egg-info/top_level.txt
+reading manifest file 'build/BiStable_scripts/BiStable_scripts.egg-info/SOURCES.txt'
+writing manifest file 'build/BiStable_scripts/BiStable_scripts.egg-info/SOURCES.txt'
+running build
+running build_py
+copying BiStable_scripts/joystick_publisher.py -> /home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/build/BiStable_scripts/build/lib/BiStable_scripts
+running install
+running install_lib
+copying /home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/build/BiStable_scripts/build/lib/BiStable_scripts/joystick_publisher.py -> /home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/install/BiStable_scripts/lib/python3.10/site-packages/BiStable_scripts
+byte-compiling /home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/install/BiStable_scripts/lib/python3.10/site-packages/BiStable_scripts/joystick_publisher.py to joystick_publisher.cpython-310.pyc
+running install_data
+running install_egg_info
+removing '/home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/install/BiStable_scripts/lib/python3.10/site-packages/BiStable_scripts-0.0.0-py3.10.egg-info' (and everything under it)
+Copying build/BiStable_scripts/BiStable_scripts.egg-info to /home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/install/BiStable_scripts/lib/python3.10/site-packages/BiStable_scripts-0.0.0-py3.10.egg-info
+running install_scripts
+Installing joystick_publisher script to /home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/install/BiStable_scripts/lib/BiStable_scripts
+Installing joystick_publisher_class script to /home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/install/BiStable_scripts/lib/BiStable_scripts
+writing list of installed files to '/home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/build/BiStable_scripts/install.log'

@@ -1,0 +1,6 @@
+source;share/BiStable_scripts/hook/pythonpath.ps1
+source;share/BiStable_scripts/hook/pythonpath.dsv
+source;share/BiStable_scripts/hook/pythonpath.sh
+source;share/BiStable_scripts/hook/ament_prefix_path.ps1
+source;share/BiStable_scripts/hook/ament_prefix_path.dsv
+source;share/BiStable_scripts/hook/ament_prefix_path.sh

@@ -1,0 +1,6 @@
+[console_scripts]
+combiner_node = BiStable_scripts.combiner_node:main
+gamepad_publisher = BiStable_scripts.gamepad_publisher:main
+gamepad_publisher_custom_msg = BiStable_scripts.gamepad_publisher_custom_msg:main
+tracking_publisher = BiStable_scripts.hand_tracking:main
+

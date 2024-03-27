@@ -1,0 +1,21 @@
+[0.608s] Invoking command in '/home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts': PYTHONPATH=/home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/build/BiStable_scripts/prefix_override:/home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/install/BiStable_scripts/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base build/BiStable_scripts build --build-base /home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/build/BiStable_scripts/build install --record /home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/build/BiStable_scripts/install.log --single-version-externally-managed
+[0.799s] running egg_info
+[0.800s] writing build/BiStable_scripts/BiStable_scripts.egg-info/PKG-INFO
+[0.800s] writing dependency_links to build/BiStable_scripts/BiStable_scripts.egg-info/dependency_links.txt
+[0.800s] writing entry points to build/BiStable_scripts/BiStable_scripts.egg-info/entry_points.txt
+[0.800s] writing requirements to build/BiStable_scripts/BiStable_scripts.egg-info/requires.txt
+[0.800s] writing top-level names to build/BiStable_scripts/BiStable_scripts.egg-info/top_level.txt
+[0.801s] reading manifest file 'build/BiStable_scripts/BiStable_scripts.egg-info/SOURCES.txt'
+[0.801s] writing manifest file 'build/BiStable_scripts/BiStable_scripts.egg-info/SOURCES.txt'
+[0.802s] running build
+[0.802s] running build_py
+[0.802s] running install
+[0.802s] running install_lib
+[0.803s] running install_data
+[0.803s] running install_egg_info
+[0.804s] removing '/home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/install/BiStable_scripts/lib/python3.10/site-packages/BiStable_scripts-0.0.0-py3.10.egg-info' (and everything under it)
+[0.804s] Copying build/BiStable_scripts/BiStable_scripts.egg-info to /home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/install/BiStable_scripts/lib/python3.10/site-packages/BiStable_scripts-0.0.0-py3.10.egg-info
+[0.805s] running install_scripts
+[0.818s] Installing joystick_publisher script to /home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/install/BiStable_scripts/lib/BiStable_scripts
+[0.818s] writing list of installed files to '/home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/build/BiStable_scripts/install.log'
+[0.834s] Invoked command in '/home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts' returned '0': PYTHONPATH=/home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/build/BiStable_scripts/prefix_override:/home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/install/BiStable_scripts/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base build/BiStable_scripts build --build-base /home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/build/BiStable_scripts/build install --record /home/the_hassan_shahzad/ros2_ws/src/BiStable_scripts/build/BiStable_scripts/install.log --single-version-externally-managed
