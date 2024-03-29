@@ -92,8 +92,8 @@ def main(args=None):
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
     cap.set(cv2.CAP_PROP_FPS, 30.0)
 
-    recognition_threshold = 15
-    target_distance = 0.8
+    recognition_threshold = 15 #bigger means easier to detect  
+    target_distance = 1.2 #in metres
     interval = 0.002
 
     kp_distance = 0.5
@@ -107,6 +107,9 @@ def main(args=None):
     kd_yaw = 0.0
     integral_yaw = 0
     prev_yaw_error = 0
+
+    inclination_threshold = 8.0
+    yaw_threshold = 5.0
 
     while True:
         # sleep(interval)
@@ -129,7 +132,7 @@ def main(args=None):
                     distance_error = target_distance - actual_distance
                     integral_distance += distance_error * interval
                     derivative_distance = (distance_error - prev_distance_error) / interval
-                    drive_command = (kp_distance * distance_error) + (ki_distance * integral_distance) + (kd_distance * derivative_distance)
+                    inclination_command = (kp_distance * distance_error) + (ki_distance * integral_distance) + (kd_distance * derivative_distance)
                     prev_distance_error = distance_error
 
                     # PID for steering
@@ -137,13 +140,24 @@ def main(args=None):
                     yaw_error = 0.5 - hand_x
                     integral_yaw += yaw_error * interval
                     derivative_yaw = (yaw_error - prev_yaw_error) / interval
-                    steer_command = (kp_yaw * yaw_error) + (ki_yaw * integral_yaw) + (kd_yaw * derivative_yaw)
+                    yaw_command = (kp_yaw * yaw_error) + (ki_yaw * integral_yaw) + (kd_yaw * derivative_yaw)
                     prev_yaw_error = yaw_error
                 
+                    if inclination_command > inclination_threshold:
+                        inclination_command = inclination_threshold
 
+                    elif inclination_command < -inclination_threshold:
+                        inclination_command = inclination_threshold
+
+                    if yaw_command > yaw_threshold:
+                        yaw_command = yaw_threshold
+
+                    elif yaw_command < -yaw_threshold:
+                        yaw_command = -yaw_threshold
+            
                     # Publish the mapped value to ROS 2 topic
                     # sleep(interval)
-                    node.publish_position(drive_command, steer_command)
+                    node.publish_position(inclination_command, yaw_command)
 
                 else:
                     node.publish_position(0.0, 0.0)
