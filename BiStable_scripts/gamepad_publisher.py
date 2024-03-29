@@ -40,9 +40,9 @@ def main(args=None):
     prev_R2_state = None
     prev_L2_state = None
     inclination = 0.0     # Inclination angle in degrees
-    yaw_vel = 0.0         # Yaw velocity in cm/s
+    yaw_vel = 0.0         # Yaw velocity in m/s
     max_inclination = 8.0 # Maximum inclination angle in degrees
-    max_yaw_vel = 5.0     # Maximum yaw velocity in cm/s
+    max_yaw_vel = 0.05    # Maximum yaw velocity in m/s
 
     while True:
 

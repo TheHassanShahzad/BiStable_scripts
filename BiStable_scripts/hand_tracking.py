@@ -96,13 +96,13 @@ def main(args=None):
     target_distance = 1.2 #in metres
     interval = 0.002
 
-    kp_distance = 0.5
+    kp_distance = 5.0
     ki_distance = 0.15
     kd_distance = 0.0
     integral_distance = 0
     prev_distance_error = 0
 
-    kp_yaw = 0.5
+    kp_yaw = 2.0
     ki_yaw = 0.1
     kd_yaw = 0.0
     integral_yaw = 0
