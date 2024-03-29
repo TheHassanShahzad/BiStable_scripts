@@ -28,6 +28,7 @@ class Combiner(Node):
     def final_commands_publisher(self):
         # Send final commands to microcontroller, a combination of gamepad and tracking data
         final_cmd = Twist()
+        
         if self.gamepad_data_ is not None and self.track_data_ is not None:
             if self.gamepad_data_.tracking_toggle == False:
                 #self.get_logger().info("Tracking is disabled")
