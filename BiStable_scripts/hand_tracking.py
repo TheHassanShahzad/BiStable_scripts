@@ -19,7 +19,7 @@ class TargetPositionsPublisher(Node):
 
     def publish_position(self, inc, yaw_vel):
         msg = TrackingData()
-        msg.inclination= inc
+        msg.inclination = inc
         msg.yaw_vel = yaw_vel
 
         self.publisher_.publish(msg)
@@ -41,9 +41,10 @@ def inversely_map_val(value, from_low, from_high, to_low, to_high):
 def is_palm(hand_coordinates, recognition_threshold, hand_side):
     percentage_error = 0
     if hand_side == "right":
-        target_angles = [-2.52545687852896, -1.9483040078665688, -1.6103067854398168, -1.7002641084906414, 0.4339406264284531, -1.6126579050081975, -1.5747849194347137, -1.5298671963002544, 1.3646553259549035, -1.6218483263299037, -1.5968216501477754, -1.597339725176179, 1.3905249169753788, -1.5950140621519084, -1.5936207638922135, -1.6183316125880256, 1.3856806181487065, -1.560501843787499, -1.6247245652958373, -1.6636383731265538]
+        target_angles = [-2.525, -1.948, -1.61, -1.7, 0.434, -1.613, -1.575, -1.53, 1.365, -1.622, -1.597, -1.597, 1.391, -1.595, -1.594, -1.618, 1.386, -1.561, -1.625, -1.664]
     elif hand_side == "left":
-        target_angles = [-0.6471584741095117, -1.2338149080123801, -1.5680533711070337, -1.3390927308736622, 2.5762135399244217, -1.5333480331588123, -1.6020179945648463, -1.6217731619466849, 1.7657050993126022, -1.5262688124548656, -1.552629543476536, -1.53839238787029, 1.7539772707880155, -1.5342519286040701, -1.4900642516486404, -1.4658452828809432, 1.7811441058091946, -1.5726404662857638, -1.465885433114545, -1.4255914565456953]
+        target_angles = [-0.647, -1.234, -1.568, -1.339, 2.576, -1.533, -1.602, -1.622, 1.766, -1.526, -1.553, -1.538, 1.754, -1.534, -1.49, -1.466, 1.781, -1.573, -1.466, -1.426]
+
     angles = [] 
     for i in range(21):
         if i != 20:
@@ -51,14 +52,14 @@ def is_palm(hand_coordinates, recognition_threshold, hand_side):
             y = hand_coordinates[i][1]
             x_next = hand_coordinates[i+1][0]
             y_next = hand_coordinates[i+1][1]
-            angle = math.atan2(y_next-y, x_next-x)
+            angle = math.atan2(y_next - y, x_next - x)
             angles.append(angle)
 
     for j in range(21):
         if j != 20:
-            percentage_error += abs((target_angles[j] - angles[j])/target_angles[j]) * 100
+            percentage_error += abs((target_angles[j] - angles[j]) / target_angles[j]) * 100
 
-    if percentage_error/20 <= recognition_threshold:
+    if percentage_error / 20 <= recognition_threshold:
         return True
     else:
         return False
@@ -71,12 +72,12 @@ def find_relative_distance(hand_coordinates):
         x_next, y_next, _ = hand_coordinates[i + 4]
         relative_distance += math.sqrt((x_next - x) ** 2 + (y_next - y) ** 2)
 
-        return relative_distance
+    return relative_distance
 
 def find_actual_distance(relative_distance):
     m = 0.143053
     c = -0.013
-    return (1/relative_distance)*m+c
+    return (1 / relative_distance) * m + c
 
 def main(args=None):
 
@@ -84,7 +85,12 @@ def main(args=None):
     node = TargetPositionsPublisher()
 
     # Video capture using OpenCV
-    cap = cv2.VideoCapture(0)  # 0 for default camera
+    cap = cv2.VideoCapture()
+    cap.open(0, apiPreference=cv2.CAP_V4L2)
+    cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 320)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
+    cap.set(cv2.CAP_PROP_FPS, 30.0)
 
     recognition_threshold = 15
     target_distance = 0.8
@@ -103,7 +109,7 @@ def main(args=None):
     prev_yaw_error = 0
 
     while True:
-        sleep(interval)
+        # sleep(interval)
         ret, frame = cap.read()
         frame = cv2.flip(frame, 1)
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -119,24 +125,24 @@ def main(args=None):
                     relative_distance = find_relative_distance(hand_coordinates)
                     actual_distance = find_actual_distance(relative_distance)
 
-                    #PID for distance
+                    # PID for distance
                     distance_error = target_distance - actual_distance
                     integral_distance += distance_error * interval
                     derivative_distance = (distance_error - prev_distance_error) / interval
-                    drive_command = (kp_distance*distance_error) + (ki_distance*integral_distance) + (kd_distance*derivative_distance)
+                    drive_command = (kp_distance * distance_error) + (ki_distance * integral_distance) + (kd_distance * derivative_distance)
                     prev_distance_error = distance_error
 
-                    #PID for steering
+                    # PID for steering
                     hand_x = hand_coordinates[9][0]
                     yaw_error = 0.5 - hand_x
                     integral_yaw += yaw_error * interval
                     derivative_yaw = (yaw_error - prev_yaw_error) / interval
-                    steer_command = (kp_yaw*yaw_error) + (ki_yaw*integral_yaw) + (kd_yaw*derivative_yaw)
+                    steer_command = (kp_yaw * yaw_error) + (ki_yaw * integral_yaw) + (kd_yaw * derivative_yaw)
                     prev_yaw_error = yaw_error
                 
 
                     # Publish the mapped value to ROS 2 topic
-                    sleep(interval)
+                    # sleep(interval)
                     node.publish_position(drive_command, steer_command)
 
                 else:
@@ -154,9 +160,5 @@ def main(args=None):
 
     # Release the video capture and close all windows
     cap.release()
-    cv2.destroyAllWindows()
-    node.destroy_node()
-    rclpy.shutdown()
+    cv2
 
-if __name__ == '__main__':
-    main()
