@@ -137,12 +137,11 @@ def main(args=None):
                             eq_change = 0.01
 
                     # Update previous button states
-                    # prev_square_state = square_state
-                    # prev_cross_state = cross_state
-                    # prev_circle_state = circle_state
-                    # prev_triangle_state = triangle_state
+
                     prev_L1_state = L1_state
                     prev_R1_state = R1_state
+                    prev_L2_state = L2_state
+                    prev_R2_state = R2_state
 
                     node.publish_data(inclination, yaw_vel, eq_change, kp_change, ki_change, kd_change, tracking_state)
                     # data_to_be_published = [inclination, yaw_vel, eq_change, kp_change, ki_change, kd_change, tracking_state]
