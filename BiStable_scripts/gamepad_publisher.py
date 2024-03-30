@@ -44,6 +44,8 @@ def main(args=None):
     max_inclination = 8.0 # Maximum inclination angle in degrees
     max_yaw_vel = 0.05    # Maximum yaw velocity in m/s
 
+    node.get_logger().info("gamepad node has started")
+    
     while True:
 
         try:

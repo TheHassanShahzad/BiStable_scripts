@@ -83,6 +83,7 @@ def main(args=None):
 
     rclpy.init(args=args)
     node = TargetPositionsPublisher()
+    node.get_logger().info("hand tracking node has started")
 
     # Video capture using OpenCV
     cap = cv2.VideoCapture()
