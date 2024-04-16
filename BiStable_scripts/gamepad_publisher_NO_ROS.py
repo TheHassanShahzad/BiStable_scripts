@@ -1,7 +1,6 @@
 from approxeng.input.selectbinder import ControllerResource
 from time import sleep
 
-
 tracking_state = 0
 while True:
     try:
